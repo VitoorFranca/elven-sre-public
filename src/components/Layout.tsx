@@ -17,6 +17,7 @@ export function Layout({ children }: LayoutProps) {
     { name: 'Carrinho', href: '/cart', icon: ShoppingCart, badge: state.itemCount },
     { name: 'Pedidos', href: '/orders', icon: FileText },
     { name: 'Métricas', href: '/metrics', icon: BarChart3 },
+    { name: 'Interno', href: '/interno', icon: BarChart3 },
   ]
 
   return (

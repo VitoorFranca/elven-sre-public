@@ -9,8 +9,10 @@ export function Home() {
     queryFn: () => productsApi.getAll().then(res => res.data),
   })
 
+  console.log(products);
+
   // Pegar apenas os primeiros 3 produtos para mostrar na home
-  const featuredProducts = products?.slice(0, 3) || []
+  const featuredProducts = products ? products.data?.slice(0, 3) : [];
 
   const features = [
     {

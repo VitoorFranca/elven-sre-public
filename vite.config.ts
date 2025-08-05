@@ -10,10 +10,9 @@ export default defineConfig({
     cors: false,
     proxy: {
       '/api': {
-        target: 'https://api.elven-sre.store',
+        target: 'http://localhost:3000',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
-        secure: true,
+        secure: false,
       },
     },
   },

@@ -8,6 +8,10 @@ import { ProductDetail } from './pages/ProductDetail'
 import { Cart } from './pages/Cart'
 import { Orders } from './pages/Orders'
 import { Metrics } from './pages/Metrics'
+import { Interno } from './pages/Interno'
+import { InternoMetrics } from './pages/InternoMetrics'
+import { InternoProducts } from './pages/InternoProducts'
+import { InternoOrders } from './pages/InternoOrders'
 import { NotFound } from './pages/NotFound'
 import { CartProvider } from './contexts/CartContext'
 
@@ -33,6 +37,10 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/metrics" element={<Metrics />} />
+            <Route path="/interno" element={<Interno />} />
+            <Route path="/interno/metrics" element={<InternoMetrics />} />
+            <Route path="/interno/products" element={<InternoProducts />} />
+            <Route path="/interno/orders" element={<InternoOrders />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Layout>

@@ -1,211 +1,75 @@
-import axios from 'axios'
-import toast from 'react-hot-toast'
+import axios from 'axios';
 
-const API_BASE_URL = (import.meta as any).env?.VITE_API_URL || '/api'
+const API_BASE_URL = (import.meta as any).env?.VITE_API_URL || 'http://localhost:3000/api/v1';
 
-export const api = axios.create({
+const api = axios.create({
   baseURL: API_BASE_URL,
   timeout: 10000,
-  headers: {
-    'Content-Type': 'application/json',
-    'Cache-Control': 'no-cache, no-store, must-revalidate',
-    'Pragma': 'no-cache',
-    'Expires': '0',
-  },
-})
+});
 
+// Interceptors para logging e telemetria
 api.interceptors.request.use(
   (config) => {
-    console.log(`${config.method?.toUpperCase()} ${config.url}`)
-    return config
+    console.debug('API Request:', config.method?.toUpperCase(), config.url);
+    return config;
   },
   (error) => {
-    console.error('Erro na requisição:', error)
-    return Promise.reject(error)
+    console.error('API Request Error:', error);
+    return Promise.reject(error);
   }
-)
+);
 
 api.interceptors.response.use(
   (response) => {
-    console.log(`${response.status} ${response.config.url}`)
-    return response
+    console.debug('API Response:', response.status, response.config.url);
+    return response;
   },
   (error) => {
-    console.error('Erro na resposta:', error.response?.data || error.message)
-    
-    const message = error.response?.data?.error || 'Erro interno do servidor'
-    toast.error(message)
-    
-    return Promise.reject(error)
+    console.error('API Response Error:', error.response?.status, error.config?.url);
+    return Promise.reject(error);
   }
-)
+);
 
-export interface Product {
-  id: number
-  name: string
-  description: string
-  price: number
-  stock: number
-  created_at: string
-  updated_at: string
-}
-
-export interface Order {
-  id: number
-  customer_name: string
-  customer_email: string
-  total_amount: number
-  status: 'pending' | 'confirmed' | 'shipped' | 'delivered'
-  created_at: string
-  updated_at: string
-  items_count: number
-  total_calculated: number
-}
-
-export interface CartItem {
-  product: Product
-  quantity: number
-}
-
-function sanitizeProduct(product: any): Product | null {
-  console.log('Sanitizando produto:', product)
-  
-  if (!validateProduct(product)) {
-    console.warn('Produto inválido recebido:', product)
-    return null
-  }
-
-  const sanitized = {
-    id: Number(product.id),
-    name: String(product.name).trim(),
-    description: String(product.description).trim(),
-    price: Number(product.price),
-    stock: Number(product.stock),
-    created_at: String(product.createdAt || product.created_at),
-    updated_at: String(product.updatedAt || product.updated_at),
-  }
-  
-  console.log('Produto sanitizado:', sanitized)
-  return sanitized
-}
-
-function validateProduct(product: any): boolean {
-  console.log('Validando produto:', product)
-  
-  const isValid = (
-    product &&
-    typeof product.id === 'number' &&
-    typeof product.name === 'string' &&
-    typeof product.description === 'string' &&
-    (typeof product.price === 'number' || typeof product.price === 'string') &&
-    !isNaN(Number(product.price)) &&
-    Number(product.price) >= 0 &&
-    (typeof product.stock === 'number' || typeof product.stock === 'string') &&
-    !isNaN(Number(product.stock)) &&
-    Number(product.stock) >= 0
-  )
-  
-  console.log('Produto válido:', isValid)
-  return isValid
-}
-
+// Products API
 export const productsApi = {
-  getAll: async () => {
-    try {
-      console.log('Buscando produtos...')
-      const response = await api.get<any>('/products')
-      console.log('Resposta da API:', response.data)
-      
-      const productsData = response.data.data || response.data
-      console.log('Dados dos produtos:', productsData)
-      
-      const sanitizedProducts = productsData.map((product: any) => ({
-        id: Number(product.id),
-        name: String(product.name),
-        description: String(product.description),
-        price: Number(product.price),
-        stock: Number(product.stock),
-        created_at: String(product.createdAt || product.created_at),
-        updated_at: String(product.updatedAt || product.updated_at),
-      }))
-      
-      console.log('Produtos processados:', sanitizedProducts)
-      
-      return { data: sanitizedProducts }
-    } catch (error) {
-      console.error('Erro ao buscar produtos:', error)
-      return { data: [] }
-    }
-  },
-  
-  getById: async (id: number) => {
-    try {
-      const response = await api.get<any>(`/products/${id}`)
-      const productData = response.data.data || response.data
-      const sanitizedProduct = sanitizeProduct(productData)
-      
-      if (!sanitizedProduct) {
-        throw new Error('Produto não encontrado ou dados inválidos')
-      }
-      
-      return { data: sanitizedProduct }
-    } catch (error) {
-      console.error(`Erro ao buscar produto ${id}:`, error)
-      throw error
-    }
-  },
-  
-  create: (data: Omit<Product, 'id' | 'created_at' | 'updated_at'>) => 
-    api.post<Product>('/products', data).then(res => res.data),
-}
+  getAll: () => api.get('/products'),
+  getById: (id: string) => api.get(`/products/${id}`),
+  create: (product: any) => api.post('/products', product),
+  update: (id: string, product: any) => api.put(`/products/${id}`, product),
+  delete: (id: string) => api.delete(`/products/${id}`),
+};
 
+// Orders API
 export const ordersApi = {
-  getAll: async () => {
-    try {
-      const response = await api.get<any>('/orders')
-      const ordersData = response.data.data || response.data
-      
-      const sanitizedOrders = ordersData.map((order: any) => ({
-        id: Number(order.id),
-        customer_name: String(order.customer_name),
-        customer_email: String(order.customer_email),
-        total_amount: Number(order.total_amount),
-        status: order.status || 'pending',
-        created_at: String(order.created_at || order.createdAt),
-        updated_at: String(order.updated_at || order.updatedAt),
-        items_count: Number(order.items_count || 0),
-        total_calculated: Number(order.total_calculated || order.total_amount),
-      }))
-      
-      return { data: sanitizedOrders }
-    } catch (error) {
-      console.error('Erro ao buscar pedidos:', error)
-      return { data: [] }
-    }
-  },
-  create: (data: {
-    customer_name: string
-    customer_email: string
-    total_amount: number
-    items: Array<{ product_id: number; quantity: number; price: number }>
-  }) => api.post<Order>('/orders', data).then(res => res.data),
-  updateStatus: (id: number, status: Order['status']) =>
-    api.put(`/orders/${id}/status`, { status }).then(res => res.data),
-}
+  getAll: () => api.get('/orders'),
+  getById: (id: string) => api.get(`/orders/${id}`),
+  create: (order: any) => api.post('/orders', order),
+  update: (id: string, order: any) => api.put(`/orders/${id}`, order),
+  updateStatus: (id: string, status: string) => api.patch(`/orders/${id}/status`, { status }),
+};
 
+// Admin API
+export const adminApi = {
+  getAllOrders: () => api.get('/admin/orders'),
+  updateOrderStatus: (orderId: string, status: string) => 
+    api.patch(`/admin/orders/${orderId}/status`, { status }),
+  getOrderDetails: (orderId: string) => api.get(`/admin/orders/${orderId}`),
+};
+
+// Metrics API
+export const metricsApi = {
+  getDashboard: () => api.get('/metrics/dashboard'),
+  getSystemMetrics: () => api.get('/metrics/system'),
+  getDatabaseMetrics: () => api.get('/metrics/database'),
+  getBusinessMetrics: () => api.get('/metrics/business'),
+  getPerformanceMetrics: () => api.get('/metrics/performance'),
+  getTracesSummary: () => api.get('/metrics/traces'),
+  getAlerts: () => api.get('/metrics/alerts'),
+};
+
+// Health API
 export const healthApi = {
-  check: async () => {
-    try {
-      const response = await api.get('/health')
-      return response.data
-    } catch (error) {
-      console.error('Erro ao verificar health:', error)
-      return {
-        status: 'error',
-        uptime: 0,
-        version: 'unknown',
-        database: 'error'
-      }
-    }
-  },
-} 
+  check: () => api.get('/health'),
+};
+
+export default api; 
