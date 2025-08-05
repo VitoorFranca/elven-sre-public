@@ -1,7 +1,7 @@
 import axios from 'axios'
 import toast from 'react-hot-toast'
 
-const API_BASE_URL = '/api'
+const API_BASE_URL = (import.meta as any).env?.VITE_API_URL || '/api'
 
 export const api = axios.create({
   baseURL: API_BASE_URL,
@@ -12,7 +12,7 @@ export const api = axios.create({
     'Pragma': 'no-cache',
     'Expires': '0',
   },
-  withCredentials: true,
+  // withCredentials: true,
 })
 
 // Interceptor para logs de requisições
