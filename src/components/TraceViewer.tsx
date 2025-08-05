@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Search, Filter, AlertTriangle, CheckCircle, XCircle, Info } from 'lucide-react'
+import { metricsApi } from '../lib/api'
 
 interface Trace {
   traceID: string
@@ -55,17 +56,11 @@ export function TraceViewer({ jaegerUrl = 'http://localhost:16686' }: TraceViewe
       setLoading(true)
       setError(null)
       
-      // Tentar buscar traces da API do Jaeger via proxy da nossa API
-      const response = await fetch('/api/metrics/traces')
+      // Usar a API client configurada que funciona tanto em dev quanto em produção
+      const response = await metricsApi.getTracesSummary()
       
-      if (!response.ok) {
-        throw new Error(`Erro ao carregar traces: ${response.status}`)
-      }
-      
-      const data = await response.json()
-      
-      if (data.success && data.data && Array.isArray(data.data)) {
-        const formattedTraces = data.data.map((trace: any) => ({
+      if (response.data.success && response.data.data && Array.isArray(response.data.data)) {
+        const formattedTraces = response.data.data.map((trace: any) => ({
           traceID: trace.traceID,
           spans: trace.spans || [],
           startTime: trace.startTime || Date.now(),

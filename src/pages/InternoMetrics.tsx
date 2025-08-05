@@ -535,7 +535,7 @@ export function InternoMetrics() {
 
         {activeTab === 'traces' && (
           <div className="space-y-6">
-            <TraceViewer jaegerUrl="http://localhost:16686" />
+            <TraceViewer jaegerUrl={(import.meta as any).env.VITE_JAEGER_URL} />
           </div>
         )}
 
