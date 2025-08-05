@@ -6,6 +6,7 @@ import {
 } from 'lucide-react'
 import { TraceViewer } from '../components/TraceViewer'
 import { metricsApi } from '../lib/api'
+import { safeToFixed } from '../lib/utils'
 import toast from 'react-hot-toast'
 
 interface SystemMetrics {
@@ -120,7 +121,8 @@ export function InternoMetrics() {
     const k = 1024
     const sizes = ['B', 'KB', 'MB', 'GB']
     const i = Math.floor(Math.log(bytes) / Math.log(k))
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i]
+    const value = bytes / Math.pow(k, i)
+    return parseFloat(safeToFixed(value, 2)) + ' ' + sizes[i]
   }
 
   const formatUptime = (seconds: number) => {
@@ -283,7 +285,7 @@ export function InternoMetrics() {
                   <div className="ml-4">
                     <p className="text-sm font-medium text-gray-600">Memória</p>
                     <p className="text-2xl font-bold text-gray-900">
-                      {`${getMemoryUsagePercent().toFixed(1)}%`}
+                      {`${safeToFixed(getMemoryUsagePercent(), 1)}%`}
                     </p>
                     <p className="text-xs text-gray-500">
                       {formatBytes(metrics.system.memory.heapUsed)}
@@ -519,12 +521,12 @@ export function InternoMetrics() {
                         {query.sql_text?.substring(0, 100)}...
                       </span>
                       <span className="text-sm text-red-600 font-medium">
-                        {query.avg_time_ms?.toFixed(2)}ms
+                        {safeToFixed(query.avg_time_ms, 2)}ms
                       </span>
                     </div>
                     <div className="flex justify-between text-xs text-gray-500">
                       <span>{query.exec_count} execuções</span>
-                      <span>Total: {query.total_time_ms?.toFixed(2)}ms</span>
+                      <span>Total: {safeToFixed(query.total_time_ms, 2)}ms</span>
                     </div>
                   </div>
                 ))}

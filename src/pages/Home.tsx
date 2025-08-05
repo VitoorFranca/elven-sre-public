@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
 import { productsApi } from '../lib/api'
+import { safeToFixed } from '../lib/utils'
 import { BookOpen, Zap, Shield, Star, ArrowRight, Package } from 'lucide-react'
 
 export function Home() {
@@ -127,7 +128,7 @@ export function Home() {
                 
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-2xl font-bold text-blue-600">
-                    R$ {product.price?.toFixed(2).replace('.', ',')}
+                    R$ {safeToFixed(product.price, 2).replace('.', ',')}
                   </span>
                   <span className="text-sm text-gray-500">
                     Estoque: {product.stock}

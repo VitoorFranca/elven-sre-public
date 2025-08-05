@@ -80,4 +80,18 @@ export function validateProduct(product: any): boolean {
     !isNaN(product.stock) &&
     product.stock >= 0
   )
+}
+
+export function safeToFixed(value: any, decimals: number = 2): string {
+  if (typeof value !== 'number' || isNaN(value)) {
+    return '0'.padEnd(decimals + 1, '0')
+  }
+  return value.toFixed(decimals)
+}
+
+export function safeNumberFormat(value: any, options: Intl.NumberFormatOptions = {}): string {
+  if (typeof value !== 'number' || isNaN(value)) {
+    return '0'
+  }
+  return new Intl.NumberFormat('pt-BR', options).format(value)
 } 

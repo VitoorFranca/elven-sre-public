@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Search, Filter, AlertTriangle, CheckCircle, XCircle, Info } from 'lucide-react'
 import { metricsApi } from '../lib/api'
+import { safeToFixed } from '../lib/utils'
 
 interface Trace {
   traceID: string
@@ -114,7 +115,8 @@ export function TraceViewer({ jaegerUrl = 'http://localhost:16686' }: TraceViewe
 
   const formatDuration = (duration: number) => {
     if (duration < 1000) return `${duration}ms`
-    return `${(duration / 1000).toFixed(2)}s`
+    const seconds = duration / 1000
+    return `${safeToFixed(seconds, 2)}s`
   }
 
   const formatTimestamp = (timestamp: number) => {
