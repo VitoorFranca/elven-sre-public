@@ -13,7 +13,7 @@ export function Metrics() {
     {
       icon: Activity,
       title: 'Status do Sistema',
-      value: health?.status || 'N/A',
+      value: health?.data?.status || 'N/A',
       color: 'text-green-600',
       bgColor: 'bg-green-50',
       description: 'Status atual da aplicação'
@@ -21,7 +21,7 @@ export function Metrics() {
     {
       icon: Clock,
       title: 'Uptime',
-      value: health?.uptime ? `${Math.floor(health.uptime / 60)}m ${Math.floor(health.uptime % 60)}s` : 'N/A',
+      value: health?.data?.uptime ? `${Math.floor(health.data.uptime / 60)}m ${Math.floor(health.data.uptime % 60)}s` : 'N/A',
       color: 'text-blue-600',
       bgColor: 'bg-blue-50',
       description: 'Tempo de atividade'
@@ -29,7 +29,7 @@ export function Metrics() {
     {
       icon: Server,
       title: 'Versão',
-      value: health?.version || 'N/A',
+      value: health?.data?.version || 'N/A',
       color: 'text-purple-600',
       bgColor: 'bg-purple-50',
       description: 'Versão da aplicação'
@@ -37,7 +37,7 @@ export function Metrics() {
     {
       icon: Database,
       title: 'Status do Banco',
-      value: health?.database || 'N/A',
+      value: health?.data?.database || 'N/A',
       color: 'text-orange-600',
       bgColor: 'bg-orange-50',
       description: 'Status da conexão com banco'

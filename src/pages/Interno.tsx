@@ -1,16 +1,7 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { BarChart3, Plus, FileText, Settings, Users, Package, DollarSign, TrendingUp } from 'lucide-react'
+import { Plus, FileText, Users, Package, DollarSign, TrendingUp } from 'lucide-react'
 
 export function Interno() {
-  const [activeTab, setActiveTab] = useState('dashboard')
-
-  const adminMenu = [
-    { id: 'dashboard', name: 'Dashboard', icon: BarChart3, href: '/interno' },
-    { id: 'metrics', name: 'Métricas', icon: TrendingUp, href: '/interno/metrics' },
-    { id: 'products', name: 'Criar Produto', icon: Plus, href: '/interno/products' },
-    { id: 'orders', name: 'Pedidos', icon: FileText, href: '/interno/orders' },
-  ]
 
   return (
     <div className="min-h-screen bg-gray-50">

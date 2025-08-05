@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { BarChart3, Plus, FileText, Package, Search, Filter, Eye, Edit, Truck, CheckCircle, Clock, AlertCircle, X } from 'lucide-react'
+import { Search, Eye, Edit, Truck, CheckCircle, Clock, AlertCircle, X } from 'lucide-react'
 import { adminApi } from '../lib/api'
 
 interface Order {

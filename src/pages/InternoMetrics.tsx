@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { 
-  BarChart3, TrendingUp, DollarSign, Package, Users, Calendar, 
-  ArrowUp, ArrowDown, FileText, Database, Cpu, HardDrive, AlertTriangle,
-  Activity, Zap, Clock, Server, Network, Eye, Search,
+  BarChart3, TrendingUp, Database, HardDrive, AlertTriangle,
+  Activity, Zap, Server,
   RefreshCw, AlertCircle, CheckCircle, XCircle, Info
 } from 'lucide-react'
 import { TraceViewer } from '../components/TraceViewer'

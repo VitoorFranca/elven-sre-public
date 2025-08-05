@@ -2,6 +2,29 @@ import axios from 'axios';
 
 const API_BASE_URL = (import.meta as any).env?.VITE_API_URL || 'http://localhost:3000/api/v1';
 
+// Tipos
+export interface Product {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  stock: number;
+  category: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Order {
+  id: number;
+  customer_name: string;
+  customer_email: string;
+  total_amount: number;
+  status: string;
+  items_count: number;
+  created_at: string;
+  updated_at: string;
+}
+
 const api = axios.create({
   baseURL: API_BASE_URL,
   timeout: 10000,

@@ -15,7 +15,7 @@ export function ProductDetail() {
 
   const { data: product, isLoading, error } = useQuery({
     queryKey: ['product', productId],
-    queryFn: () => productsApi.getById(productId).then(res => res.data),
+    queryFn: () => productsApi.getById(productId.toString()).then(res => res.data),
     enabled: !!productId,
   })
 

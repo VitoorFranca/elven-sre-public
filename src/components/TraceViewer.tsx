@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Search, Filter, Clock, AlertTriangle, CheckCircle, XCircle, Info } from 'lucide-react'
+import { Search, Filter, AlertTriangle, CheckCircle, XCircle, Info } from 'lucide-react'
 
 interface Trace {
   traceID: string
@@ -344,7 +344,7 @@ export function TraceViewer({ jaegerUrl = 'http://localhost:16686' }: TraceViewe
               <div>
                 <h4 className="font-medium text-gray-900 mb-2">Spans</h4>
                 <div className="space-y-2">
-                  {selectedTrace.spans.map((span, index) => (
+                  {selectedTrace.spans.map((span) => (
                     <div key={span.spanID} className="p-3 bg-gray-50 rounded-lg">
                       <div className="flex justify-between items-start mb-2">
                         <div>
