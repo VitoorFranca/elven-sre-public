@@ -7,6 +7,15 @@ export default defineConfig({
   server: {
     port: 5173,
     host: true,
+    cors: false,
+    proxy: {
+      '/api': {
+        target: 'https://api.elven-sre.store',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+        secure: true,
+      },
+    },
   },
   build: {
     outDir: 'dist',
