@@ -6,7 +6,6 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function formatPrice(price: number): string {
-  // Verificar se o preço é válido
   if (typeof price !== 'number' || isNaN(price) || price < 0) {
     return 'R$ 0,00'
   }

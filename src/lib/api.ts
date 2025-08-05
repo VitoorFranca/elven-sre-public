@@ -12,29 +12,26 @@ export const api = axios.create({
     'Pragma': 'no-cache',
     'Expires': '0',
   },
-  // withCredentials: true, // Descomente se precisar enviar cookies
 })
 
-// Interceptor para logs de requisições
 api.interceptors.request.use(
   (config) => {
-    console.log(`🚀 ${config.method?.toUpperCase()} ${config.url}`)
+    console.log(`${config.method?.toUpperCase()} ${config.url}`)
     return config
   },
   (error) => {
-    console.error('❌ Erro na requisição:', error)
+    console.error('Erro na requisição:', error)
     return Promise.reject(error)
   }
 )
 
-// Interceptor para logs de respostas
 api.interceptors.response.use(
   (response) => {
-    console.log(`✅ ${response.status} ${response.config.url}`)
+    console.log(`${response.status} ${response.config.url}`)
     return response
   },
   (error) => {
-    console.error('❌ Erro na resposta:', error.response?.data || error.message)
+    console.error('Erro na resposta:', error.response?.data || error.message)
     
     const message = error.response?.data?.error || 'Erro interno do servidor'
     toast.error(message)
@@ -43,7 +40,6 @@ api.interceptors.response.use(
   }
 )
 
-// Tipos
 export interface Product {
   id: number
   name: string
@@ -71,12 +67,11 @@ export interface CartItem {
   quantity: number
 }
 
-// Função para validar e limpar dados de produtos
 function sanitizeProduct(product: any): Product | null {
-  console.log('🔍 Sanitizando produto:', product)
+  console.log('Sanitizando produto:', product)
   
   if (!validateProduct(product)) {
-    console.warn('❌ Produto inválido recebido:', product)
+    console.warn('Produto inválido recebido:', product)
     return null
   }
 
@@ -90,31 +85,12 @@ function sanitizeProduct(product: any): Product | null {
     updated_at: String(product.updatedAt || product.updated_at),
   }
   
-  console.log('✅ Produto sanitizado:', sanitized)
+  console.log('Produto sanitizado:', sanitized)
   return sanitized
 }
 
-// Função para validar e limpar array de produtos
-// Removida pois não está sendo utilizada
-// function sanitizeProducts(products: any[]): Product[] {
-//   console.log('🔍 Sanitizando array de produtos:', products)
-//   
-//   if (!Array.isArray(products)) {
-//     console.warn('❌ Dados de produtos não são um array:', products)
-//     return []
-//   }
-
-//   const sanitized = products
-//     .map(sanitizeProduct)
-//     .filter((product): product is Product => product !== null)
-//   
-//   console.log('✅ Array sanitizado:', sanitized)
-//   return sanitized
-// }
-
-// Função de validação mais flexível
 function validateProduct(product: any): boolean {
-  console.log('🔍 Validando produto:', product)
+  console.log('Validando produto:', product)
   
   const isValid = (
     product &&
@@ -129,22 +105,20 @@ function validateProduct(product: any): boolean {
     Number(product.stock) >= 0
   )
   
-  console.log('✅ Produto válido:', isValid)
+  console.log('Produto válido:', isValid)
   return isValid
 }
 
-// APIs
 export const productsApi = {
   getAll: async () => {
     try {
-      console.log('🔍 Buscando produtos...')
+      console.log('Buscando produtos...')
       const response = await api.get<any>('/products')
-      console.log('📦 Resposta da API:', response.data)
+      console.log('Resposta da API:', response.data)
       
-      const productsData = response.data.data || response.data // Fallback para diferentes formatos
-      console.log('📋 Dados dos produtos:', productsData)
+      const productsData = response.data.data || response.data
+      console.log('Dados dos produtos:', productsData)
       
-      // Simplificar a sanitização por enquanto
       const sanitizedProducts = productsData.map((product: any) => ({
         id: Number(product.id),
         name: String(product.name),
@@ -155,11 +129,11 @@ export const productsApi = {
         updated_at: String(product.updatedAt || product.updated_at),
       }))
       
-      console.log('✅ Produtos processados:', sanitizedProducts)
+      console.log('Produtos processados:', sanitizedProducts)
       
       return { data: sanitizedProducts }
     } catch (error) {
-      console.error('❌ Erro ao buscar produtos:', error)
+      console.error('Erro ao buscar produtos:', error)
       return { data: [] }
     }
   },
@@ -167,7 +141,7 @@ export const productsApi = {
   getById: async (id: number) => {
     try {
       const response = await api.get<any>(`/products/${id}`)
-      const productData = response.data.data || response.data // Fallback para diferentes formatos
+      const productData = response.data.data || response.data
       const sanitizedProduct = sanitizeProduct(productData)
       
       if (!sanitizedProduct) {
@@ -205,7 +179,7 @@ export const ordersApi = {
       
       return { data: sanitizedOrders }
     } catch (error) {
-      console.error('❌ Erro ao buscar pedidos:', error)
+      console.error('Erro ao buscar pedidos:', error)
       return { data: [] }
     }
   },
