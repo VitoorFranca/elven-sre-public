@@ -27,6 +27,7 @@ jobs:
         run: yarn build
         env:
           VITE_API_URL: ${{ secrets.API_URL }}
+          VITE_JAEGER_URL: ${{ secrets.JAEGER_URL }}
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
