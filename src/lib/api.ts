@@ -9,7 +9,6 @@ export const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
     'Cache-Control': 'no-cache, no-store, must-revalidate',
-    'Origin': 'https://elven-sre.store',
     'Access-Control-Allow-Origin': 'https://elven-sre.store',
     'Access-Control-Allow-Credentials': 'true',
     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
