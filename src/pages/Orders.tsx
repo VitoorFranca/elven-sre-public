@@ -88,7 +88,7 @@ export function Orders() {
                   <div className="flex items-center justify-between">
                     <div className="text-sm text-gray-600">
                       <span className="font-medium">Total:</span>
-                      <span className="ml-1 text-lg font-bold text-green-600">
+                      <span className="ml-1 text-lg font-bold text-blue-600">
                         {formatPrice(order.total_amount)}
                       </span>
                     </div>
@@ -131,7 +131,7 @@ export function Orders() {
             Você ainda não fez nenhum pedido.
           </p>
           <a href="/products" className="btn btn-primary">
-            Ver Produtos
+                          Ver Livros
           </a>
         </div>
       )}

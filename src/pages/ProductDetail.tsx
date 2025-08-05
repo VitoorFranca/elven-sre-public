@@ -70,7 +70,7 @@ export function ProductDetail() {
           O produto que você está procurando não existe ou foi removido.
         </p>
         <Link to="/products" className="btn btn-primary">
-          Voltar aos Produtos
+                      Voltar aos Livros
         </Link>
       </div>
     )
@@ -85,7 +85,7 @@ export function ProductDetail() {
       <div className="flex items-center space-x-2 text-sm text-gray-500">
         <Link to="/products" className="hover:text-gray-700 flex items-center space-x-1">
           <ArrowLeft className="w-4 h-4" />
-          <span>Produtos</span>
+                      <span>Livros</span>
         </Link>
         <span>/</span>
         <span className="text-gray-900">{product.name}</span>
@@ -94,8 +94,8 @@ export function ProductDetail() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Product Image */}
         <div className="relative">
-          <div className="h-96 bg-gradient-to-br from-green-100 to-green-200 rounded-lg flex items-center justify-center group hover:from-green-200 hover:to-green-300 transition-colors">
-            <Package className="w-32 h-32 text-green-600" />
+                      <div className="h-96 bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg flex items-center justify-center group hover:from-blue-200 hover:to-blue-300 transition-colors">
+                            <Package className="w-32 h-32 text-blue-600" />
           </div>
           
           {/* Wishlist Button */}
@@ -139,10 +139,10 @@ export function ProductDetail() {
           </div>
 
           <div className="flex items-center justify-between">
-            <span className="text-4xl font-bold text-green-600">
+            <span className="text-4xl font-bold text-blue-600">
               {formatPrice(product.price)}
             </span>
-            <span className={`text-sm font-medium ${product.stock > 0 ? 'text-green-600' : 'text-red-600'}`}>
+            <span className={`text-sm font-medium ${product.stock > 0 ? 'text-blue-600' : 'text-red-600'}`}>
               {product.stock > 0 ? `${product.stock} em estoque` : 'Esgotado'}
             </span>
           </div>
@@ -150,17 +150,17 @@ export function ProductDetail() {
           {/* Features */}
           <div className="space-y-3">
             <div className="flex items-center space-x-2 text-sm text-gray-600">
-              <Truck className="w-4 h-4 text-green-600" />
+                              <Truck className="w-4 h-4 text-blue-600" />
               <span>Entrega em até 2 horas</span>
             </div>
             
             <div className="flex items-center space-x-2 text-sm text-gray-600">
-              <Package className="w-4 h-4 text-green-600" />
-              <span>Produto de qualidade garantida</span>
+                              <Package className="w-4 h-4 text-blue-600" />
+                              <span>Livro de qualidade garantida</span>
             </div>
             
             <div className="flex items-center space-x-2 text-sm text-gray-600">
-              <Star className="w-4 h-4 text-green-600" />
+                              <Star className="w-4 h-4 text-blue-600" />
               <span>Atendimento premium</span>
             </div>
           </div>

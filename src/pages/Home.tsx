@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
 import { productsApi } from '../lib/api'
-import { Flower, Zap, Shield, Star, ArrowRight, Package } from 'lucide-react'
+import { BookOpen, Zap, Shield, Star, ArrowRight, Package } from 'lucide-react'
 
 export function Home() {
   const { data: products, isLoading } = useQuery({
@@ -14,9 +14,9 @@ export function Home() {
 
   const features = [
     {
-      icon: Flower,
-      title: 'Flores Frescas',
-      description: 'Flores selecionadas diretamente dos melhores produtores, garantindo frescor e qualidade.'
+      icon: BookOpen,
+      title: 'Livros Selecionados',
+      description: 'Livros cuidadosamente escolhidos dos melhores autores e editoras, garantindo qualidade e conteúdo excepcional.'
     },
     {
       icon: Zap,
@@ -26,7 +26,7 @@ export function Home() {
     {
       icon: Shield,
       title: 'Qualidade Garantida',
-      description: 'Todos os nossos produtos passam por rigoroso controle de qualidade.'
+      description: 'Todos os nossos livros passam por rigoroso controle de qualidade.'
     },
     {
       icon: Star,
@@ -41,18 +41,18 @@ export function Home() {
       <div className="text-center space-y-6 py-8">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-5xl font-bold text-gray-900 mb-6">
-            Flores que <span className="text-green-600">Inspiram</span>
+            Livros que <span className="text-blue-600">Transformam</span>
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Descubra nossa coleção exclusiva de flores e arranjos. 
-            Cada produto é cuidadosamente selecionado para trazer beleza e alegria para sua vida.
+            Descubra nossa coleção exclusiva de livros e literatura. 
+            Cada obra é cuidadosamente selecionada para trazer conhecimento e inspiração para sua vida.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/products"
               className="btn btn-primary text-lg px-8 py-3 flex items-center justify-center space-x-2"
             >
-              <span>Ver Produtos</span>
+              <span>Ver Livros</span>
               <ArrowRight className="w-5 h-5" />
             </Link>
             <Link
@@ -69,10 +69,10 @@ export function Home() {
       <div className="py-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Por que escolher a Elven?
+            Por que escolher a Elven Livros?
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Oferecemos a melhor experiência em flores com qualidade premium e serviço excepcional.
+            Oferecemos a melhor experiência em livros com qualidade premium e serviço excepcional.
           </p>
         </div>
         
@@ -81,8 +81,8 @@ export function Home() {
             const Icon = feature.icon
             return (
               <div key={feature.title} className="text-center group">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-green-200 transition-colors">
-                  <Icon className="w-8 h-8 text-green-600" />
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-blue-200 transition-colors">
+                  <Icon className="w-8 h-8 text-blue-600" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">
                   {feature.title}
@@ -101,21 +101,21 @@ export function Home() {
         <div className="py-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Produtos em Destaque
+              Livros em Destaque
             </h2>
             <p className="text-lg text-gray-600">
-              Conheça alguns dos nossos produtos mais populares
+              Conheça alguns dos nossos livros mais populares
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {featuredProducts.map((product: any) => (
               <div key={product.id} className="card group hover:shadow-lg transition-shadow">
-                <div className="h-48 bg-gradient-to-br from-green-100 to-green-200 rounded-lg mb-4 flex items-center justify-center group-hover:from-green-200 group-hover:to-green-300 transition-colors">
-                  <Package className="w-16 h-16 text-green-600" />
+                <div className="h-48 bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg mb-4 flex items-center justify-center group-hover:from-blue-200 group-hover:to-blue-300 transition-colors">
+                  <Package className="w-16 h-16 text-blue-600" />
                 </div>
                 
-                <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-green-600 transition-colors">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
                   {product.name}
                 </h3>
                 
@@ -124,7 +124,7 @@ export function Home() {
                 </p>
                 
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-2xl font-bold text-green-600">
+                  <span className="text-2xl font-bold text-blue-600">
                     R$ {product.price.toFixed(2).replace('.', ',')}
                   </span>
                   <span className="text-sm text-gray-500">
@@ -148,7 +148,7 @@ export function Home() {
               to="/products"
               className="btn btn-secondary text-lg px-8 py-3"
             >
-              Ver Todos os Produtos
+              Ver Todos os Livros
             </Link>
           </div>
         </div>
@@ -159,7 +159,7 @@ export function Home() {
         <div className="py-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Produtos em Destaque
+              Livros em Destaque
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -177,20 +177,20 @@ export function Home() {
       )}
 
       {/* CTA Section */}
-      <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-2xl p-8 text-center">
+      <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-2xl p-8 text-center">
         <h2 className="text-3xl font-bold text-gray-900 mb-4">
           Pronto para começar?
         </h2>
         <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-          Explore nossa coleção completa de flores e arranjos. 
-          Encontre o produto perfeito para cada ocasião especial.
+          Explore nossa coleção completa de livros e literatura. 
+          Encontre o livro perfeito para cada momento da sua vida.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             to="/products"
             className="btn btn-primary text-lg px-8 py-3"
           >
-            Explorar Produtos
+            Explorar Livros
           </Link>
           <Link
             to="/orders"

@@ -21,7 +21,7 @@ export function Cart() {
 
   const handleCheckout = async () => {
     if (state.items.length === 0) {
-      toast.error('Adicione produtos ao carrinho antes de finalizar')
+              toast.error('Adicione livros ao carrinho antes de finalizar')
       return
     }
 
@@ -56,8 +56,8 @@ export function Cart() {
             {state.items.map((item) => (
               <div key={item.id} className="card">
                 <div className="flex items-center space-x-4">
-                  <div className="w-20 h-20 bg-gradient-to-br from-green-100 to-green-200 rounded-lg flex items-center justify-center">
-                    <Package className="w-10 h-10 text-green-600" />
+                                      <div className="w-20 h-20 bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg flex items-center justify-center">
+                    <Package className="w-10 h-10 text-blue-600" />
                   </div>
                   
                   <div className="flex-1">
@@ -68,7 +68,7 @@ export function Cart() {
                       {item.product.description}
                     </p>
                     <div className="flex items-center justify-between">
-                      <span className="text-lg font-bold text-green-600">
+                      <span className="text-lg font-bold text-blue-600">
                         {formatPrice(item.product.price)}
                       </span>
                       <span className="text-sm text-gray-500">
@@ -141,7 +141,7 @@ export function Cart() {
               </div>
               <div className="flex justify-between text-sm">
                 <span>Frete:</span>
-                <span className={shippingCost === 0 ? 'text-green-600' : ''}>
+                <span className={shippingCost === 0 ? 'text-blue-600' : ''}>
                   {shippingCost === 0 ? 'Grátis' : formatPrice(shippingCost)}
                 </span>
               </div>
@@ -153,7 +153,7 @@ export function Cart() {
               <div className="border-t pt-3">
                 <div className="flex justify-between font-semibold text-lg">
                   <span>Total:</span>
-                  <span className="text-green-600">{formatPrice(finalTotal)}</span>
+                  <span className="text-blue-600">{formatPrice(finalTotal)}</span>
                 </div>
               </div>
             </div>
@@ -179,7 +179,7 @@ export function Cart() {
             <div className="mt-4 text-center">
               <Link
                 to="/products"
-                className="text-sm text-green-600 hover:text-green-700 flex items-center justify-center space-x-1"
+                className="text-sm text-blue-600 hover:text-blue-700 flex items-center justify-center space-x-1"
               >
                 <ArrowLeft className="w-4 h-4" />
                 <span>Continuar Comprando</span>
@@ -194,10 +194,10 @@ export function Cart() {
             Seu carrinho está vazio
           </h2>
           <p className="text-gray-600 mb-6">
-            Adicione produtos ao seu carrinho para começar suas compras.
+            Adicione livros ao seu carrinho para começar suas compras.
           </p>
           <Link to="/products" className="btn btn-primary">
-            Ver Produtos
+                          Ver Livros
           </Link>
         </div>
       )}

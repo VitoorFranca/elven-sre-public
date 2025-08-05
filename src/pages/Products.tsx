@@ -34,7 +34,7 @@ export function Products() {
     return (
       <div className="space-y-6">
         <div className="flex justify-between items-center">
-          <h1 className="text-3xl font-bold text-gray-900">Produtos</h1>
+          <h1 className="text-3xl font-bold text-gray-900">Livros</h1>
           <div className="text-sm text-gray-500">Carregando...</div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -60,10 +60,10 @@ export function Products() {
       <div className="text-center py-12">
         <Package className="w-12 h-12 text-gray-400 mx-auto mb-4" />
         <h2 className="text-xl font-semibold text-gray-900 mb-2">
-          Erro ao carregar produtos
+          Erro ao carregar livros
         </h2>
         <p className="text-gray-600 mb-4">
-          Não foi possível carregar os produtos. Tente novamente.
+          Não foi possível carregar os livros. Tente novamente.
         </p>
         <button 
           onClick={() => window.location.reload()}
@@ -78,9 +78,9 @@ export function Products() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-gray-900">Nossos Produtos</h1>
+        <h1 className="text-3xl font-bold text-gray-900">Nossos Livros</h1>
         <div className="text-sm text-gray-500">
-          {products?.length || 0} produtos encontrados
+          {products?.length || 0} livros encontrados
         </div>
       </div>
 
@@ -93,9 +93,9 @@ export function Products() {
             return (
               <div key={product.id} className="card group hover:shadow-lg transition-all duration-300">
                 <div className="relative">
-                  <div className="h-48 bg-gradient-to-br from-green-100 to-green-200 rounded-lg mb-4 flex items-center justify-center group-hover:from-green-200 group-hover:to-green-300 transition-colors">
-                    <Package className="w-16 h-16 text-green-600" />
-                  </div>
+                                  <div className="h-48 bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg mb-4 flex items-center justify-center group-hover:from-blue-200 group-hover:to-blue-300 transition-colors">
+                  <Package className="w-16 h-16 text-blue-600" />
+                </div>
                   
                   {/* Wishlist Button */}
                   <button className="absolute top-2 right-2 p-2 bg-white rounded-full shadow-md hover:bg-gray-50 transition-colors">
@@ -116,7 +116,7 @@ export function Products() {
                   )}
                 </div>
                 
-                <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-green-600 transition-colors">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
                   {product.name}
                 </h3>
                 
@@ -125,7 +125,7 @@ export function Products() {
                 </p>
                 
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-2xl font-bold text-green-600">
+                  <span className="text-2xl font-bold text-blue-600">
                     {formatPrice(product.price)}
                   </span>
                   <span className={`text-sm ${product.stock > 0 ? 'text-green-600' : 'text-red-600'}`}>
@@ -204,10 +204,10 @@ export function Products() {
         <div className="text-center py-12">
           <Package className="w-12 h-12 text-gray-400 mx-auto mb-4" />
           <h2 className="text-xl font-semibold text-gray-900 mb-2">
-            Nenhum produto encontrado
+            Nenhum livro encontrado
           </h2>
           <p className="text-gray-600 mb-6">
-            Não há produtos disponíveis no momento.
+            Não há livros disponíveis no momento.
           </p>
           <button 
             onClick={() => window.location.reload()}

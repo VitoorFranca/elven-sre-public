@@ -13,7 +13,7 @@ export function Layout({ children }: LayoutProps) {
 
   const navigation = [
     { name: 'Home', href: '/', icon: Home },
-    { name: 'Produtos', href: '/products', icon: Package },
+    { name: 'Livros', href: '/products', icon: Package },
     { name: 'Carrinho', href: '/cart', icon: ShoppingCart, badge: state.itemCount },
     { name: 'Pedidos', href: '/orders', icon: FileText },
     { name: 'Métricas', href: '/metrics', icon: BarChart3 },
@@ -27,10 +27,10 @@ export function Layout({ children }: LayoutProps) {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <Link to="/" className="flex items-center space-x-2">
-                <div className="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center">
+                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-sm">E</span>
                 </div>
-                <span className="text-xl font-bold text-gray-900">Elven Flores</span>
+                <span className="text-xl font-bold text-gray-900">Elven Livros</span>
               </Link>
             </div>
             
@@ -46,7 +46,7 @@ export function Layout({ children }: LayoutProps) {
                     className={cn(
                       'flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors relative',
                       isActive
-                        ? 'bg-green-100 text-green-700'
+                        ? 'bg-blue-100 text-blue-700'
                         : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
                     )}
                   >
@@ -74,8 +74,8 @@ export function Layout({ children }: LayoutProps) {
       <footer className="bg-white border-t mt-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="text-center text-gray-500 text-sm">
-            <p>Elven Flores - Sua floricultura de confiança</p>
-            <p>Qualidade e beleza em cada arranjo</p>
+            <p>Elven Livros - Sua livraria de confiança</p>
+            <p>Conhecimento e cultura em cada página</p>
           </div>
         </div>
       </footer>

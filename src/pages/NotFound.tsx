@@ -28,7 +28,7 @@ export function NotFound() {
               className="btn btn-secondary flex items-center justify-center space-x-2"
             >
               <Package className="w-4 h-4" />
-              <span>Produtos</span>
+              <span>Livros</span>
             </Link>
             <Link
               to="/cart"
