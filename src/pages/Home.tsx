@@ -127,7 +127,7 @@ export function Home() {
                 
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-2xl font-bold text-blue-600">
-                    R$ {product.price.toFixed(2).replace('.', ',')}
+                    R$ {product.price?.toFixed(2).replace('.', ',')}
                   </span>
                   <span className="text-sm text-gray-500">
                     Estoque: {product.stock}
